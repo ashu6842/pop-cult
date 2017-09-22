@@ -30,7 +30,7 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 									var kns=JSON.parse(pol);
 									var id=kns["items"][0]["id"];
 
-									var wikm=sprintf("%s/api/v1/Articles/Details?ids=%s&abstract=500",dom,id);
+									var wikm=sprintf("%s/api/v1/Articles/Details?ids=%s&abstract=500&width=200&height=200",dom,id);
 
 									var wikmResult=http.get(wikm,function callback (res)
 										{	res.on("data",function(data)
