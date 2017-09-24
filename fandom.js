@@ -11,8 +11,17 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 				{
 					var hot=data.toString();
 				    var cool=JSON.parse(hot);
-					var dom=cool["items"][0]["url"];	
-					
+					var tj=0;
+					try{var dom=cool["items"][0]["url"];}
+					catch(e)
+					{
+						console.log("The searched text didn't match any data. Sorry. :(");
+						tj=34;
+						return;
+					}	
+
+					if(tj!=34){
+
 					var wikia=sprintf("%s/api/v1/Search/List?query=%s&limit=1&minArticleQuality=10&batch=1",dom,rawInput);
 					var wikiaResult=http.get(wikia,function callback(res)
 						{
@@ -20,8 +29,16 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 								{
 									var pol=data.toString();
 									var kns=JSON.parse(pol);
-									var id=kns["items"][0]["id"];
+									var gretchen=0;
+									try{var id=kns["items"][0]["id"];}
+									catch(e)
+									{
+										console.log("no result found. sorry. :(");
+										gretchen=43;
+									}
 
+									if(gretchen!=43)
+									{
 									var wikm=sprintf("%s/api/v1/Articles/Details?ids=%s&abstract=500&width=200&height=200",dom,id);
 
 									var wikmResult=http.get(wikm,function callback (res)
@@ -48,8 +65,12 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 															var cc=[];
 															for(var i=0;i<3;i++)
 															{
-																cc.push(rela["items"][id][i]["title"]);
-
+																try{cc.push(rela["items"][id][i]["title"]);}
+																catch(e)
+																{
+																	cc.push("null");
+																	break;
+																}
 															};
 															console.log("\n **"+title+"** \n");
 															console.log(string);
@@ -60,8 +81,11 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 												});
 											});
 										});
+								}
 								});
 						});
+
+				}
 				});
 		});
 
