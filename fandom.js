@@ -9,16 +9,6 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 		{
 			res.on("data",function(data)
 				{
-					/*var fat=data.toString();
-					var pool=JSON.parse(fat);
-					var keys=Object.keys(pool.items);
-					var id=keys[0];
-					var title=sprintf(pool["items"]["%s",keys[0]]["title"]);
-					var url=sprintf(pool["items"]["%s",keys[0]]["url"]);
-					var thumbnail=sprintf(pool["items"]["%s",keys[0]]["thumbnail"]);
-					var basepath=pool["basepath"];
-					url=basepath.concat(url);
-					*/
 					var hot=data.toString();
 				    var cool=JSON.parse(hot);
 					var dom=cool["items"][0]["url"];	
@@ -39,22 +29,14 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 											{
 											var fat=data.toString();
 											var pool=JSON.parse(fat);
-											//console.log(pool);
-											//const arr="\'"+id+"\'";
-											//const arr=id;
-											//console.log(arr);
 											var title=pool["items"][id]["title"];
-											//console.log(title);
 											var url=pool["items"][id]["url"];
 											var basepath=pool["basepath"];
 											url=basepath+url;
-											//console.log(url);
 											var ks=pool["items"][id]["abstract"];
 											var pos=ks.indexOf(".",350);
 											var string=ks.slice(0,pos+1);
-											//console.log(string);
 											var thumbnail=pool["items"][id]["thumbnail"];
-											//console.log(thumbnail);
 											
 											var related=sprintf("%s/api/v1/RelatedPages/List?ids=%s&limit=3",dom,id);
 											var relatedResult=http.get(related,function callback(res)
