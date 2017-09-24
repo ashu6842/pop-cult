@@ -1,4 +1,6 @@
-
+//pop-cult
+//
+//A weekend project to create a quick reference pop culture dictionary using node and fandom api.
 const { sprintf } = require('sprintf-js');
 var rawInput=process.argv.slice(2);
 var http=require("http");
