@@ -10,7 +10,7 @@ var crossWikiResult=http.get(crossWiki,function callback(res)
 			res.on("data",function(data)
 				{
 					var hot=data.toString();
-				    var cool=JSON.parse(hot);
+					var cool=JSON.parse(hot);
 					var tj=0;
 					try{var dom=cool["items"][0]["url"];}
 					catch(e)
